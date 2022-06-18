@@ -17,15 +17,20 @@ export class ModalService {
       id,
       visible: false
     })
-    console.log(this.modals)
   }
 
-  isModalOpen() {
-    return true
+  isModalOpen(id: string) : boolean {
+    return !!this.modals.find(element => element.id === id)?.visible
   }
 
-  toggleModal() {
+  toggleModal(id: string) {
+    const modal = this.modals.find(element => element.id === id)
+
+    if(modal) {
+      modal.visible = !modal.visible
+    }
     //this.visible = !this.visible
+
   }
 
 }
