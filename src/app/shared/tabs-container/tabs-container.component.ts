@@ -20,6 +20,7 @@ export class TabsContainerComponent implements AfterContentInit {
    if (!activeTabs || activeTabs.length === 0) {
     this.selectTab(this.tabs!.first)
    }
+
   }
 
   selectTab(tab: TabComponent) {
@@ -27,9 +28,9 @@ export class TabsContainerComponent implements AfterContentInit {
       tab.active = false
     })
 
-    tab.active = true
+      tab.active = true
 
-    return false
+      return false
   }
 
 }
