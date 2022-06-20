@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -7,33 +7,33 @@ import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  name = new UntypedFormControl('', [
+  name = new FormControl('', [
     Validators.required,
     Validators.minLength(3)
   ])
-  email = new UntypedFormControl('', [
+  email = new FormControl('', [
     Validators.required,
     Validators.email
   ])
-  age = new UntypedFormControl('', [
+  age = new FormControl('', [
     Validators.required,
     Validators.min(18),
     Validators.max(100)
   ])
-  password = new UntypedFormControl('', [
+  password = new FormControl('', [
     Validators.required,
     Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm)
   ])
-  confirm_password = new UntypedFormControl('', [
+  confirm_password = new FormControl('', [
     Validators.required
   ])
-  phoneNumber = new UntypedFormControl('', [
+  phoneNumber = new FormControl('', [
     Validators.required,
     Validators.minLength(12),
     Validators.maxLength(12)
   ])
 
-  registerForm = new UntypedFormGroup({
+  registerForm = new FormGroup({
     name: this.name,
     email: this.email,
     age: this.age,
@@ -43,4 +43,7 @@ export class RegisterComponent {
 
   })
 
+  register() {
+    console.log('register submitted')
+  }
 }
