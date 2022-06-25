@@ -23,7 +23,7 @@ export class AuthService {
     }
 
     const userCred = await this.auth.createUserWithEmailAndPassword(
-      userData.email, userData.password
+      userData.email as string, userData.password as string
       )
 
       await this.usersCollection.add({
