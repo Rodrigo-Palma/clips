@@ -43,4 +43,9 @@
     Value too high.
   </p>
 
+  <p *ngIf="control.errors?.noMatch"
+    class="text-red-400">
+    Passwords do not match.
+  </p>
+
 </ng-container>
