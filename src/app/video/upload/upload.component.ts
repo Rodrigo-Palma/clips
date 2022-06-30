@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { v4 as uuid } from 'uuid';
 
 
 @Component({
@@ -11,6 +13,11 @@ export class UploadComponent implements OnInit {
   isDragover = false
   file: File | null = null
   nextStep = false
+  showAlert = false
+  alertColor = 'blue'
+  alertMsg = 'Please wait! Your clip is being uploaded.'
+  inSubmission = false
+
 
   title = new FormControl('', {
     validators: [
@@ -25,7 +32,9 @@ export class UploadComponent implements OnInit {
  })
 
 
-  constructor() { }
+  constructor(
+    private storage: AngularFireStorage
+    ) { }
 
   ngOnInit(): void {
   }
@@ -46,7 +55,15 @@ export class UploadComponent implements OnInit {
   }
 
   uploadFile() {
-    console.log('File uploaded')
+    this.showAlert = true
+    this.alertColor = 'blue'
+    this.alertMsg = 'Please wait! Your clip is being uploaded.'
+    this.inSubmission = true
+
+    const clipFileName = uuid()
+    const clipPath = `clips/${clipFileName}.mp4`
+
+    this.storage.upload(clipPath, this.file)
   }
 
 }
