@@ -6,7 +6,6 @@ import videojs from 'video.js';
 import IClip from '../models/clip.model';
 import { DatePipe } from '@angular/common';
 
-
 @Component({
   selector: 'app-clip',
   templateUrl: './clip.component.html',
@@ -17,7 +16,7 @@ import { DatePipe } from '@angular/common';
 
 export class ClipComponent implements OnInit {
   @ViewChild('videoPlayer', {static: true }) target?: ElementRef
-  player?: videojs.Player;
+  player?: videojs.Player
   clip?: IClip
 
   constructor(public route: ActivatedRoute) { }
@@ -25,7 +24,7 @@ export class ClipComponent implements OnInit {
   ngOnInit(): void {
     this.player = videojs(this.target?.nativeElement)
 
-    this.route.params.subscribe(data => {
+    this.route.data.subscribe(data => {
       this.clip = data.clip as IClip
 
       this.player?.src({

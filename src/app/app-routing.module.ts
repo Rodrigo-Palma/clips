@@ -23,7 +23,7 @@ const routes: Routes = [
     }
   },
   {
-    path: '', // dashboard/manage, dashboard/upload
+    path: '',
     loadChildren: async () => (await import('./video/video.module')).VideoModule
   },
 
