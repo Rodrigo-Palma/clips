@@ -23,6 +23,13 @@ const routes: Routes = [
     }
   },
   {
+    path: '', // dashboard/manage, dashboard/upload
+    loadChildren: async () => (await import('./video/video.module')).VideoModule
+
+
+  },
+
+  {
     path: '**',
     component: NotFoundComponent
   }
